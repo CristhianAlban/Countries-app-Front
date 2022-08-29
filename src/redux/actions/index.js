@@ -6,16 +6,15 @@ export const ORDER="ORDER"
 export const GET_SEARCH_COUNTRY="GET_SEARCH_COUNTRY"
 export const GET_COUNTRY_DETAIL="GET_COUNTRY_DETAIL"
 export const FILTER_ACTIVITY="FILTER_ACTIVITY"
-
+const axios = require('axios');
 
 
 
 export function getCountries() {
     return async function(dispatch) {
-      return fetch("http://localhost:3001/countries")
-        .then(response => response.json())
-        .then(json => {
-          dispatch({ type: GET_COUNTRIES, payload: json });
+      return axios("http://localhost:3001/countries")
+        .then(response => {
+          dispatch({ type: GET_COUNTRIES, payload: response.data });
         });
     };
 }
