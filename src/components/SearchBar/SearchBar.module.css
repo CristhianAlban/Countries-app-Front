@@ -1,0 +1,14 @@
+.box{
+    margin: 25px;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+}
+.forma{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+
+}

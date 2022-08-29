@@ -1,0 +1,33 @@
+
+.box{
+    width:100vw;
+    height:100vh;
+    background-image: url("https://imagekit.androidphoria.com/wp-content/uploads/Google-Earth-tierra.jpg");
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    text-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+.btn {
+    color: #d4d4d4;
+    padding: 0.7em 1.7em;
+    font-size: 15px;
+    border-radius: 0.5em;
+    background: #323232;
+    border: 1px solid #b9b9b9;
+    transition: all .3s;
+    box-shadow: 6px 6px 12px #7c7c7c,
+                -6px -6px 12px #000000;
+   }
+   
+.btn:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5,
+                inset -4px -4px 12px #ffffff;
+   }

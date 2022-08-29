@@ -1,0 +1,40 @@
+.box{
+    margin: 25px;
+}
+.card {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 190px;
+    height: 254px;
+    border-radius: 30px;
+    background: #212121;
+    box-shadow: 15px 15px 30px rgb(25, 25, 25),
+                -15px -15px 30px rgb(60, 60, 60);
+   }
+
+.flag{
+    width: 140px;
+}
+.btn {
+    color: #d4d4d4;
+    margin: 15px;
+    padding: 0.7em 1.7em;
+    font-size: 12px;
+    border-radius: 0.5em;
+    background: #323232;
+    border: 1px solid #b9b9b9;
+    transition: all .3s;
+    box-shadow: 6px 6px 12px #7c7c7c,
+                -6px -6px 12px #000000;
+}
+   
+.btn:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5,
+                inset -4px -4px 12px #ffffff;
+}
+.countryTextBox{
+    text-align: center;
+}
