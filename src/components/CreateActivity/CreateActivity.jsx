@@ -2,6 +2,7 @@ import React, {useState, useEffect,} from 'react'
 import {useSelector} from 'react-redux';
 import Nav from '../Nav/Nav';
 import styles from './CreateActivity.module.css'
+import axios from "axios"
 
 
 
@@ -21,10 +22,10 @@ function validateInput(input) {
     } else if(!input.duracion.includes("hora") || !/^[0-9]+$/.test(hora[0])){ // /^[0-9]+$/
       errors.duracion ="debe iniciar por un numero y tener la palabra \"hora\""
     }
-    if(input.dificultad===0){
+    if(input.dificultad===null){
       errors.dificultad= "debe selecionarse una dificultad"
     }
-    if(input.temporada===0){
+    if(input.temporada===null){
       errors.temporada= "debe selecionarse una temporada"
     }
     if(!input.countries.length){
@@ -50,8 +51,8 @@ export default function CreateActivity () {
   const [errors, setErrors]= useState({}); 
   const[input, setInput]= useState({
     nombre:"",
-    dificultad:0,
-    temporada: 0,
+    dificultad: "",
+    temporada: "",
     duracion:"",
     countries:[]
   })
@@ -108,22 +109,26 @@ export default function CreateActivity () {
   
   
   
-  function putActivity (obj){
-    fetch('http://localhost:3001/activities',{
-      method:"POST",
-      headers:{
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(obj)
-    })
-       
+  function postActivity (obj){
+    axios.post('/activities', obj)       
   }
 
   const handleSubmit = e => {
     e.preventDefault()
     if(validateForm(input,errors)){
-      putActivity(input)
-    }else window.alert("formulario incompleto")
+      postActivity(input);
+      setInput({
+            nombre:"",
+            dificultad:"",
+            temporada:"",
+            duracion:"",
+            countries:[]
+          });
+      setCountry({
+        country:""
+      })
+      setCountriesBox([])
+    }else window.alert("formulario incompleto")    
   }
   
 
@@ -148,8 +153,8 @@ export default function CreateActivity () {
        )}
        <br/>
        <label>Dificultad:</label>
-       <select name='dificultad' defaultValue={0} onChange={handleInputChange}>
-         <option disabled value={0}>selecciona el nivel de dificultad</option>
+       <select name='dificultad'value={input.dificultad}  onChange={handleInputChange}>
+         <option value={""}>selecciona el nivel de dificultad</option>
          <option value={1}>1</option>
          <option value={2}>2</option>
          <option value={3}>3</option>
@@ -173,8 +178,8 @@ export default function CreateActivity () {
        )}
        <br/>
        <label>Temporada:</label>
-       <select name='temporada' defaultValue={0} onChange={handleInputChange}>
-         <option disabled value={0}>selecciona la temporada</option>
+       <select name='temporada' value={input.temporada} onChange={handleInputChange}>
+         <option value={""}>selecciona la temporada</option>
          <option value={'Todas'}>Todas</option>
          <option value={'Verano'}>Verano</option>
          <option value={'Otoño'}>Otoño</option>

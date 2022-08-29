@@ -12,7 +12,7 @@ const axios = require('axios');
 
 export function getCountries() {
     return async function(dispatch) {
-      return axios("http://localhost:3001/countries")
+      return axios("/countries")
         .then(response => {
           dispatch({ type: GET_COUNTRIES, payload: response.data });
         });
@@ -35,7 +35,7 @@ export function order(data){
 }
 export function getSearchCountry(name){
   return async function(dispatch) {
-    return axios(`http://localhost:3001/countries?name=${name}`)
+    return axios(`/countries?name=${name}`)
       .then(response => {
         dispatch({ type:GET_SEARCH_COUNTRY, payload:response.data});
       });
@@ -43,7 +43,7 @@ export function getSearchCountry(name){
 }
 export function getCountryDetail(id){
   return async function(dispatch) {
-    return axios(`http://localhost:3001/countries/${id}`)
+    return axios(`/countries/${id}`)
       .then(response => {
         dispatch({ type:GET_COUNTRY_DETAIL, payload:response.data});
       });
