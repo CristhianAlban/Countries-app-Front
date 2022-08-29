@@ -35,19 +35,17 @@ export function order(data){
 }
 export function getSearchCountry(name){
   return async function(dispatch) {
-    return fetch(`http://localhost:3001/countries?name=${name}`)
-      .then(response => response.json())
-      .then(json => {
-        dispatch({ type:GET_SEARCH_COUNTRY, payload:json});
+    return axios(`http://localhost:3001/countries?name=${name}`)
+      .then(response => {
+        dispatch({ type:GET_SEARCH_COUNTRY, payload:response.data});
       });
   };
 }
 export function getCountryDetail(id){
   return async function(dispatch) {
-    return fetch(`http://localhost:3001/countries/${id}`)
-      .then(response => response.json())
-      .then(json => {
-        dispatch({ type:GET_COUNTRY_DETAIL, payload:json});
+    return axios(`http://localhost:3001/countries/${id}`)
+      .then(response => {
+        dispatch({ type:GET_COUNTRY_DETAIL, payload:response.data});
       });
   };
 
