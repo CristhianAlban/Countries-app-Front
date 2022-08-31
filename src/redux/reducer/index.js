@@ -1,4 +1,4 @@
-import {GET_COUNTRIES, ON_PAGE_CHANGED, FILTER_CONTINENT, CALC_PAGES, ORDER, GET_SEARCH_COUNTRY, GET_COUNTRY_DETAIL, FILTER_ACTIVITY} from '../actions/index.js'
+import {GET_DATA_API, GET_COUNTRIES, ON_PAGE_CHANGED, FILTER_CONTINENT, CALC_PAGES, ORDER, GET_SEARCH_COUNTRY, GET_COUNTRY_DETAIL, FILTER_ACTIVITY} from '../actions/index.js'
 import { pageLimit } from '../../components/Pagination/Pagination.jsx';
 const initialState = {
    
@@ -8,12 +8,18 @@ const initialState = {
     countryDetail: [],
     currentCountries: [],
     currentPage: 1, 
-    totalPages: null
+    totalPages: null,
+    dataBaseStatus:""
   };
  
 
  function rootReducer(state = initialState, action) {
-  
+    if(action.type===GET_DATA_API){
+      return{
+        ...state,
+        dataBaseStatus: action.payload
+      }
+    }  
     if (action.type===CALC_PAGES){
       return{
         ...state,

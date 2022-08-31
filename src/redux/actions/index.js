@@ -6,6 +6,7 @@ export const ORDER="ORDER"
 export const GET_SEARCH_COUNTRY="GET_SEARCH_COUNTRY"
 export const GET_COUNTRY_DETAIL="GET_COUNTRY_DETAIL"
 export const FILTER_ACTIVITY="FILTER_ACTIVITY"
+export const GET_DATA_API = "GET_DATA_API"
 const axios = require('axios');
 
 
@@ -18,7 +19,15 @@ export function getCountries() {
         });
     };
 }
-export  function onPageChanged(data) {
+export function getDataApi (){
+  return async function(dispatch) {
+    return axios("/")
+      .then(response => {
+        dispatch({ type: GET_DATA_API, payload: response.data });
+      });
+  };
+}
+export function onPageChanged(data) {
   return {type: ON_PAGE_CHANGED, payload: data }
 }
 export function filterContinent(data) {
